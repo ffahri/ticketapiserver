@@ -1,15 +1,17 @@
 package com.webischia.apiserver.Controllers;
 
 import com.webischia.apiserver.Services.TicketService;
+import com.webischia.apiserver.api.v1.model.TicketDTO;
 import com.webischia.apiserver.api.v1.model.TicketListDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/api/v1/categories/")
+@RequestMapping("/api/v1/tickets/")
 public class TicketController {
 
     private final TicketService ticketService;
@@ -17,9 +19,15 @@ public class TicketController {
     public TicketController(TicketService ticketService) {
         this.ticketService = ticketService;
     }
-
+    @GetMapping
     public ResponseEntity<TicketListDTO> getAllTickets()
     {
         return new ResponseEntity<TicketListDTO>(new TicketListDTO(ticketService.getAllTickets()),HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<TicketDTO> getById(@PathVariable int id)
+    {
+        return new ResponseEntity<TicketDTO>(ticketService.getTicketById(id),HttpStatus.OK);
     }
 }
