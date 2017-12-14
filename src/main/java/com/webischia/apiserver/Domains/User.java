@@ -30,9 +30,9 @@ public class User {
     @JoinColumn(name = "access_id", nullable = false)
     private AccessLevel accessLevel;
 
-    @OneToMany(mappedBy = "userTicket")
+   /* @OneToMany(mappedBy = "userTicket")
     private Set<Ticket> ticketSet = new HashSet<>();
-
+*/
     @OneToMany(mappedBy = "userMessage")
     private Set<Message> messages = new HashSet<>();
 }

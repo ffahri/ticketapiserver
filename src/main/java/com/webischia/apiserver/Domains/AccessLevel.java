@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @EqualsAndHashCode(exclude = {"useraccess"})
@@ -20,6 +21,6 @@ public class AccessLevel {
     @Temporal(TemporalType.TIMESTAMP) //todo kontrol edelim elle girerken filan data.sql ile olmadı
     private Date creationDate = new Date();
 
-    @OneToOne(mappedBy = "accessLevel")
-    private User useraccess;
+    /*@OneToMany(mappedBy = "accessLevel")
+    private List<User> useraccess;*/
 }

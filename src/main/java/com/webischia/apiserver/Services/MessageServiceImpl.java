@@ -3,10 +3,12 @@ package com.webischia.apiserver.Services;
 import com.webischia.apiserver.Repositories.MessageRepository;
 import com.webischia.apiserver.api.v1.mapper.MessageMapper;
 import com.webischia.apiserver.api.v1.model.MessageDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class MessageServiceImpl implements MessageService{
 
 

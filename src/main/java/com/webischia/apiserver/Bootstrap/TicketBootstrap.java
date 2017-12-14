@@ -1,6 +1,8 @@
 package com.webischia.apiserver.Bootstrap;
 
+import com.webischia.apiserver.Domains.Message;
 import com.webischia.apiserver.Domains.Ticket;
+import com.webischia.apiserver.Repositories.MessageRepository;
 import com.webischia.apiserver.Repositories.TicketRepository;
 import com.webischia.apiserver.Repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -11,9 +13,12 @@ public class TicketBootstrap implements CommandLineRunner {
     private final TicketRepository ticketRepository ;
     private final UserRepository userRepository;
 
-    public TicketBootstrap(TicketRepository ticketRepository, UserRepository userRepository) {
+    private final MessageRepository messageRepository;
+
+    public TicketBootstrap(TicketRepository ticketRepository, UserRepository userRepository, MessageRepository messageRepository) {
         this.ticketRepository = ticketRepository;
         this.userRepository = userRepository;
+        this.messageRepository = messageRepository;
     }
 
     @Override
@@ -23,6 +28,11 @@ public class TicketBootstrap implements CommandLineRunner {
         testTicket.setTicketTitle("Test from Bootstrap");
         testTicket.setUserTicket(userRepository.findById(1).get());
         ticketRepository.save(testTicket);
+        Message testMessage = new Message();
+        testMessage.setMessageContext("İlk Mesaj Hey");
+        testMessage.setUserMessage(userRepository.findById(1).get());
+        testMessage.setTicketMessage(ticketRepository.findById(1).get());
+        messageRepository.save(testMessage);
         System.out.println("Saved = "+ ticketRepository.count());
     }
 }

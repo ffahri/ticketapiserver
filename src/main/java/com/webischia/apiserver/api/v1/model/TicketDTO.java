@@ -13,7 +13,7 @@ public class TicketDTO {
 
     private int id;
     private String ticketTitle;
-    private Set<MessageDTO> messages = new HashSet<>();
+   /* private Set<MessageDTO> messages = new HashSet<>();*/
     private User userTicket;
     private boolean status;
     private Date creationDate = new Date();
