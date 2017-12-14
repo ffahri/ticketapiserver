@@ -33,6 +33,6 @@ public class User {
    /* @OneToMany(mappedBy = "userTicket")
     private Set<Ticket> ticketSet = new HashSet<>();
 */
-    @OneToMany(mappedBy = "userMessage")
-    private Set<Message> messages = new HashSet<>();
+/*    @OneToMany(mappedBy = "userMessage")
+    private Set<Message> messages = new HashSet<>();*/
 }

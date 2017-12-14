@@ -19,8 +19,8 @@ public class Ticket {
 
     private String ticketTitle;
 
-  /*  @OneToMany(mappedBy = "ticketMessage")
-    private Set<Message> messages = new HashSet<>();*/
+    @OneToMany(mappedBy = "ticketMessage")
+    private Set<Message> messages = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
