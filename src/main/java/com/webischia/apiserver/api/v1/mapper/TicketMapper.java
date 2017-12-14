@@ -4,6 +4,7 @@ import com.webischia.apiserver.Domains.Ticket;
 import com.webischia.apiserver.api.v1.model.TicketDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.springframework.context.annotation.Bean;
 
 @Mapper
 public interface TicketMapper {
