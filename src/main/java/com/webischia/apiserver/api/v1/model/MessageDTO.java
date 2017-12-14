@@ -1,9 +1,11 @@
 package com.webischia.apiserver.api.v1.model;
 
 import com.webischia.apiserver.Domains.User;
+import lombok.Data;
 
 import java.util.Date;
 
+@Data
 public class MessageDTO {
 
 
