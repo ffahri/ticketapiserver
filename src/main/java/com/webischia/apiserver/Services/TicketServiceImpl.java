@@ -3,10 +3,12 @@ package com.webischia.apiserver.Services;
 import com.webischia.apiserver.Repositories.TicketRepository;
 import com.webischia.apiserver.api.v1.mapper.TicketMapper;
 import com.webischia.apiserver.api.v1.model.TicketDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class TicketServiceImpl implements TicketService{
 
     private final TicketRepository ticketRepository;
