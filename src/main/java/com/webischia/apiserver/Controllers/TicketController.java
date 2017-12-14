@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/v1/tickets/")
+@RequestMapping({"/api/v1/tickets/","/api/v1/tickets"})
 public class TicketController {
 
     private final TicketService ticketService;
