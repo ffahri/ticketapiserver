@@ -7,4 +7,5 @@ import java.util.List;
 public interface TicketService {
     List<TicketDTO> getAllTickets();
     TicketDTO getTicketById(int id);
+    TicketDTO createTicket(TicketDTO ticketDTO);
 }

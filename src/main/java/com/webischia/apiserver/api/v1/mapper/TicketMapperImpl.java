@@ -32,4 +32,23 @@ public class TicketMapperImpl implements TicketMapper {
         }
         return ticketDTO;
     }
+
+    @Override
+    public Ticket ticketDTOtoTicket(TicketDTO ticket) {
+        if(ticket == null) {
+            return null;
+        }
+        Ticket ticketDTO = new Ticket();
+        ticketDTO.setCreationDate(ticket.getCreationDate());
+        ticketDTO.setId(ticket.getId());
+        ticketDTO.setStatus(ticket.isStatus());
+        ticketDTO.setTicketTitle(ticket.getTicketTitle());
+        ticketDTO.setUserTicket(ticket.getUserTicket());
+        if(ticket.getMessages() != null && ticket.getMessages().size() > 0)
+        {
+            ticket.getMessages().forEach(messageDTO -> ticketDTO.getMessages().add(messageMapper.messageDTOtoMessage(messageDTO)));
+
+        }
+        return ticketDTO;
+    }
 }

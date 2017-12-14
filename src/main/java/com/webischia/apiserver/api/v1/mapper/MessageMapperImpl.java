@@ -28,4 +28,19 @@ public class MessageMapperImpl implements MessageMapper {
 
         return messageDTO;
     }
+
+    @Override
+    public Message messageDTOtoMessage(MessageDTO message) {
+        if(message==null) {
+            return null;
+        }
+        Message messageDTO = new Message();
+        messageDTO.setCreationDate(message.getCreationDate());
+        messageDTO.setId(message.getId());
+        messageDTO.setMessageContext(message.getMessageContext());
+        //messageDTO.setTicketMessage(ticketMapper.ticketToTicketDTO(message.getTicketMessage()));
+        messageDTO.setUserMessage(message.getUserMessage());
+
+        return messageDTO;
+    }
 }

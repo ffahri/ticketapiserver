@@ -1,5 +1,6 @@
 package com.webischia.apiserver.Services;
 
+import com.webischia.apiserver.Domains.Ticket;
 import com.webischia.apiserver.Repositories.TicketRepository;
 import com.webischia.apiserver.api.v1.mapper.TicketMapper;
 import com.webischia.apiserver.api.v1.model.TicketDTO;
@@ -31,5 +32,14 @@ public class TicketServiceImpl implements TicketService{
     @Override
     public TicketDTO getTicketById(int id) {
         return ticketMapper.ticketToTicketDTO(ticketRepository.findById(id).get());
+    }
+
+    @Override
+    public TicketDTO createTicket(TicketDTO ticketDTO) {
+
+        Ticket ticket = ticketMapper.ticketDTOtoTicket(ticketDTO);
+        Ticket savedTicket = ticketRepository.save(ticket);
+        TicketDTO returnedTicket = ticketMapper.ticketToTicketDTO(savedTicket);
+        return returnedTicket;
     }
 }
