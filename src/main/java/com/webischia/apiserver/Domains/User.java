@@ -24,6 +24,7 @@ public class User {
     private String phone;
     @JsonIgnore
     private String password;
+
     private String username;
 
     @Temporal(TemporalType.TIMESTAMP)

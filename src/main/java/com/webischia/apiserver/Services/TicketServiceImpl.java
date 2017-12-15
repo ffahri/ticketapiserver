@@ -2,6 +2,7 @@ package com.webischia.apiserver.Services;
 
 import com.webischia.apiserver.Domains.Ticket;
 import com.webischia.apiserver.Repositories.TicketRepository;
+import com.webischia.apiserver.Repositories.UserRepository;
 import com.webischia.apiserver.api.v1.mapper.TicketMapper;
 import com.webischia.apiserver.api.v1.model.TicketDTO;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,12 @@ public class TicketServiceImpl implements TicketService{
 
     private final TicketRepository ticketRepository;
     private final TicketMapper ticketMapper;
+    private final UserRepository userRepository;
 
-    public TicketServiceImpl(TicketRepository ticketRepository, TicketMapper ticketMapper) {
+    public TicketServiceImpl(TicketRepository ticketRepository, TicketMapper ticketMapper, UserRepository userRepository) {
         this.ticketRepository = ticketRepository;
         this.ticketMapper = ticketMapper;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -37,16 +40,17 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    public TicketDTO createTicket(TicketDTO ticketDTO) {
+    public TicketDTO createTicket(TicketDTO ticketDTO , String username) {
 
         Ticket ticket = ticketMapper.ticketDTOtoTicket(ticketDTO);
+        ticket.setUserTicket(userRepository.findByUsername(username).get());
         Ticket savedTicket = ticketRepository.save(ticket);
         TicketDTO returnedTicket = ticketMapper.ticketToTicketDTO(savedTicket);
         return returnedTicket;
     }
 
     @Override
-    public List<TicketDTO> getAllByUserTicketUsername(String username) {
+    public List<TicketDTO> getAllTicketsByUsername(String username) {
         return ticketRepository.getAllByUserTicketUsername(username)
                 .stream()
                 .map(ticketMapper::ticketToTicketDTO)
@@ -54,4 +58,11 @@ public class TicketServiceImpl implements TicketService{
 
     }
 
+    @Override
+    public boolean isUserHaveIt(int id, String username) {
+        if(ticketRepository.findById(id).get().getUserTicket().getUsername().equals(username))
+            return true;
+        else
+            return false;
+    }
 }

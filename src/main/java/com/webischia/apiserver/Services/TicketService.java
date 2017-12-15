@@ -9,7 +9,8 @@ import java.util.Set;
 public interface TicketService {
     List<TicketDTO> getAllTickets();
     //List<TicketDTO> getUserAllTicketsById(int userid);
-    List<TicketDTO> getAllByUserTicketUsername(String username);
+    List<TicketDTO> getAllTicketsByUsername(String username);
     TicketDTO getTicketById(int id);
-    TicketDTO createTicket(TicketDTO ticketDTO);
+    TicketDTO createTicket(TicketDTO ticketDTO,String username);
+    boolean isUserHaveIt(int id , String username);
 }
