@@ -37,10 +37,10 @@ public class TicketController {
         return new ResponseEntity<TicketDTO>(ticketService.getTicketById(id),HttpStatus.OK);
     }
 
-    //@PreAuthorize("#userid == authentication.")
+    // BUNU USER KULLANACAK
     @PreAuthorize("hasAuthority('Client')")
     @GetMapping("/user/{name}")
-    public ResponseEntity<TicketListDTO> getUserAllTicketsById(@PathVariable String name)
+    public ResponseEntity<TicketListDTO> getUserAllTicketsByUserName(@PathVariable String name)
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userWhichRequest = authentication.getName();
