@@ -33,11 +33,12 @@ public class MessageController {
 
     @PreAuthorize("hasAuthority('Client')")
     @PostMapping("{username}/{id}/new")
-    public ResponseEntity<MessageDTO> createTicket(@RequestBody MessageDTO MessageDTO, @PathVariable int id, @PathVariable String username) {
+    public ResponseEntity<MessageDTO> userCreateTicket(@RequestBody MessageDTO MessageDTO, @PathVariable int id, @PathVariable String username) {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userWhichRequest = authentication.getName();
         if (username.equals(userWhichRequest) && ticketService.isUserHaveIt(id, username)) { // bu kullanıcı bu ticketa sahip mi ?
-            return new ResponseEntity<MessageDTO>(messageService.createMessage(MessageDTO, id,username), HttpStatus.CREATED);
+            return new ResponseEntity<MessageDTO>(messageService.createMessage(MessageDTO,id,username), HttpStatus.CREATED);
         }
         else
             throw new AccessDeniedException("Wrong User || Hatalı Kullanıcı || Message Service");
