@@ -2,6 +2,7 @@ package com.webischia.apiserver.Domains;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,7 +22,9 @@ public class User {
     private String surname;
     private String email;
     private String phone;
+    @JsonIgnore
     private String password;
+    private String username;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate = new Date();
