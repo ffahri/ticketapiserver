@@ -6,7 +6,9 @@ import com.webischia.apiserver.api.v1.mapper.TicketMapper;
 import com.webischia.apiserver.api.v1.model.TicketDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,4 +44,14 @@ public class TicketServiceImpl implements TicketService{
         TicketDTO returnedTicket = ticketMapper.ticketToTicketDTO(savedTicket);
         return returnedTicket;
     }
+
+    @Override
+    public List<TicketDTO> getAllByUserTicketUsername(String username) {
+        return ticketRepository.getAllByUserTicketUsername(username)
+                .stream()
+                .map(ticketMapper::ticketToTicketDTO)
+                .collect(Collectors.toList());
+
+    }
+
 }
