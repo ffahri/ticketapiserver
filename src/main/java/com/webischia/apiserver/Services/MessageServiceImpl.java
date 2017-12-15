@@ -42,14 +42,13 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
-    public MessageDTO createMessage(MessageDTO messageDTO, int id) {
+    public MessageDTO createMessage(MessageDTO messageDTO, int id , String username) {
         if(messageDTO == null)
             return null;
 
         Message gelen = messageMapper.messageDTOtoMessage(messageDTO);
         gelen.setTicketMessage(ticketRepository.findById(id).get());
-        //gelen.setUser(userRepository.findByid( tabi burada şifre kontrolu ???
-        gelen.setUserMessage(userRepository.findById(2).get());//Aşırı hardcoded yaparken
+        gelen.setUserMessage(userRepository.findByUsername(username).get());//Aşırı hardcoded yaparken
         Message giden = messageRepository.save(gelen);
         MessageDTO geridonen = messageMapper.messageToMessageDTO(giden);
 

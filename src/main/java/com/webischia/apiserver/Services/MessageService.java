@@ -9,5 +9,5 @@ public interface MessageService {
 
     List<MessageDTO> getAllMessages();
     MessageDTO getMessageById(int id);
-    MessageDTO createMessage(MessageDTO messageDTO , int id); //hangi idye sahip tickete ekleyeceğim
+    MessageDTO createMessage(MessageDTO messageDTO , int id , String username); //hangi idye sahip tickete ekleyeceğim
 }
