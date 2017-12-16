@@ -4,6 +4,8 @@ import com.webischia.apiserver.Domains.Ticket;
 import com.webischia.apiserver.Repositories.TicketRepository;
 import com.webischia.apiserver.Repositories.UserRepository;
 import com.webischia.apiserver.api.v1.mapper.TicketMapper;
+import com.webischia.apiserver.api.v1.mapper.UserMapper;
+import com.webischia.apiserver.api.v1.model.OnlyTicketDTO;
 import com.webischia.apiserver.api.v1.model.TicketDTO;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +21,13 @@ public class TicketServiceImpl implements TicketService{
     private final TicketRepository ticketRepository;
     private final TicketMapper ticketMapper;
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public TicketServiceImpl(TicketRepository ticketRepository, TicketMapper ticketMapper, UserRepository userRepository) {
+    public TicketServiceImpl(TicketRepository ticketRepository, TicketMapper ticketMapper, UserRepository userRepository, UserMapper userMapper) {
         this.ticketRepository = ticketRepository;
         this.ticketMapper = ticketMapper;
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     @Override

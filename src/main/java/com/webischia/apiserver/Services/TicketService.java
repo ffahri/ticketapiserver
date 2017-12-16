@@ -1,6 +1,7 @@
 package com.webischia.apiserver.Services;
 
 import com.webischia.apiserver.Domains.Ticket;
+import com.webischia.apiserver.api.v1.model.OnlyTicketDTO;
 import com.webischia.apiserver.api.v1.model.TicketDTO;
 
 import java.util.List;
