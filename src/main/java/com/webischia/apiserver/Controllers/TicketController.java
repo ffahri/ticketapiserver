@@ -68,19 +68,7 @@ public class TicketController {
     }
 
 
-    //BU MESAJ SERVISI IÇIN OLMASI GEREKECEK
-    @PreAuthorize("hasAuthority('Client')")
-    @GetMapping("/user/{name}/{id}")
-    public ResponseEntity<TicketDTO> userGetById(@PathVariable int id,@PathVariable String name)
-    {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userWhichRequest = authentication.getName();
-        if(name.equals(userWhichRequest) && ticketService.isUserHaveIt(id,name)) { // kullanıcı sahip mi buna yoksa heykır ??
-            return new ResponseEntity<TicketDTO>(ticketService.getTicketById(id), HttpStatus.OK);
-        }
-        else
-            throw new AccessDeniedException("Wrong User || Hatalı Kullanıcı");
-    }
+
 
 //*******************************************************************************
 

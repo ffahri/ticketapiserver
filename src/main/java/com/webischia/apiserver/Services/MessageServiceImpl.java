@@ -6,6 +6,7 @@ import com.webischia.apiserver.Repositories.TicketRepository;
 import com.webischia.apiserver.Repositories.UserRepository;
 import com.webischia.apiserver.api.v1.mapper.MessageMapper;
 import com.webischia.apiserver.api.v1.model.MessageDTO;
+import com.webischia.apiserver.api.v1.model.MessageListDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
-    public List<MessageDTO> getAllMessages() {
-        return messageRepository.findAll()  //Java 8 Stream
+    public List<MessageDTO> getAllMessages(int id) {
+        return messageRepository.getAllByTicketMessageId(id)//Java 8 Stream
                 .stream()
                 .map(messageMapper::messageToMessageDTO)
                 .collect(Collectors.toList());

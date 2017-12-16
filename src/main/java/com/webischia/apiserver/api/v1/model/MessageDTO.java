@@ -12,8 +12,8 @@ public class MessageDTO {
 
     private int id;
     private String messageContext;
-    private TicketDTO ticketMessage;
-    private User userMessage;
+    /*private TicketDTO ticketMessage;*/
+    private UserDTO userMessage;
     private Date creationDate = new Date();
 
 }

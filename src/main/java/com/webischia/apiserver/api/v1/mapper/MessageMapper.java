@@ -5,6 +5,7 @@ import com.webischia.apiserver.api.v1.model.MessageDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+@Mapper
 public interface MessageMapper {
 
     MessageMapper INSTANCE = Mappers.getMapper(MessageMapper.class);
