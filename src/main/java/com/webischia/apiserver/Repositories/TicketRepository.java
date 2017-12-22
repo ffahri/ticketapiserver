@@ -17,4 +17,5 @@ public interface TicketRepository extends JpaRepository<Ticket,Integer> {
     Optional<Ticket> findByTicketTitle(String title);
     //List<Ticket> getAllByUserTicket(String name);
     List<Ticket> getAllByUserTicketUsername(String username);
+    List<Ticket> findAllByUserTicketIdAndTicketTitleContaining(int id,String title);
 }

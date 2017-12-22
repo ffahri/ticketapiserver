@@ -69,4 +69,12 @@ public class TicketServiceImpl implements TicketService{
         else
             return false;
     }
+
+    @Override
+    public List<TicketDTO> findAllByTicketTitle(int id , String title) {
+        //System.out.println(ticketRepository.findAllByTicketTitleLikeAndUserTicketUsername(title,uname).get(0).getTicketTitle());
+        return ticketRepository.findAllByUserTicketIdAndTicketTitleContaining(id,title)
+                .stream()
+                .map(ticketMapper::ticketToTicketDTO)
+                .collect(Collectors.toList());    }
 }

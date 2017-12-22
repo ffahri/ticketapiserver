@@ -87,4 +87,23 @@ public class TicketController {
 
 
     }
+
+
+    //SEARCH
+
+    @PreAuthorize("hasAuthority('Client')")
+    @GetMapping("/user/{name}/search/{term}")
+    public ResponseEntity<TicketListDTO> userSearchTicket(@PathVariable String name,@PathVariable(value = "term") String term)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userWhichRequest = authentication.getName();
+        if (name.equals(userWhichRequest)) {
+            int id = userRepository.findByUsername(name).get().getId();
+            return new ResponseEntity<TicketListDTO>(new TicketListDTO(ticketService.findAllByTicketTitle(id,term)), HttpStatus.OK);
+        }
+        else
+            throw new AccessDeniedException("Wrong User || Hatalı Kullanıcı");
+
+
+    }
 }

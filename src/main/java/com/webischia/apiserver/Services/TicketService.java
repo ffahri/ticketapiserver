@@ -14,4 +14,5 @@ public interface TicketService {
     TicketDTO getTicketById(int id);
     TicketDTO createTicket(TicketDTO ticketDTO,String username);
     boolean isUserHaveIt(int id , String username);
+    List<TicketDTO> findAllByTicketTitle(int id,String title);
 }
