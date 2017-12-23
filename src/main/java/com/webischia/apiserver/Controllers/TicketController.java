@@ -106,4 +106,28 @@ public class TicketController {
 
 
     }
+    // UPDATE
+
+    @PreAuthorize("hasAuthority('Client')")
+    @GetMapping("/user/{name}/{id}/status")
+    public void closeOrOpenTicketclient(@PathVariable String name, @PathVariable int id)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userWhichRequest = authentication.getName();
+        if (name.equals(userWhichRequest)) {
+            ticketService.CloseOrOpenTicket(id);
+        }
+        else
+            throw new AccessDeniedException("Wrong User || Hatalı Kullanıcı");
+
+    }
+
+    @PreAuthorize("hasAuthority('Employee')")
+    @GetMapping("/{id}/status")
+    public void closeOrOpenTicket(@PathVariable int id)
+    {
+        ticketService.CloseOrOpenTicket(id);
+
+    }
+
 }

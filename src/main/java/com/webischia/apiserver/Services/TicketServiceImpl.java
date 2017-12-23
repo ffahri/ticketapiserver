@@ -1,5 +1,6 @@
 package com.webischia.apiserver.Services;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.webischia.apiserver.Domains.Ticket;
 import com.webischia.apiserver.Repositories.TicketRepository;
 import com.webischia.apiserver.Repositories.UserRepository;
@@ -77,4 +78,26 @@ public class TicketServiceImpl implements TicketService{
                 .stream()
                 .map(ticketMapper::ticketToTicketDTO)
                 .collect(Collectors.toList());    }
+
+  /*  @Override
+    public TicketDTO patchTicket(int id , TicketDTO ticketDTO) {
+        return ticketRepository.findById(id).map(ticket -> {
+                ticket.setStatus(ticketDTO.isStatus());
+            TicketDTO yeni = ticketMapper.ticketToTicketDTO(ticketRepository.save(ticket));
+            return yeni;
+        } );
+
+    }*/
+
+    @Override
+    public void CloseOrOpenTicket(int id)
+    {
+        Boolean current = ticketRepository.findById(id).get().isStatus();
+        ticketRepository.findById(id).get().setStatus(!current);
+    }
+
+    @Override
+    public TicketDTO patchTicket(int id, TicketDTO ticketDTO) {
+        return null;
+    }
 }

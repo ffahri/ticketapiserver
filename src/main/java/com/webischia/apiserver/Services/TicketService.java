@@ -15,4 +15,7 @@ public interface TicketService {
     TicketDTO createTicket(TicketDTO ticketDTO,String username);
     boolean isUserHaveIt(int id , String username);
     List<TicketDTO> findAllByTicketTitle(int id,String title);
+    TicketDTO patchTicket(int id, TicketDTO ticketDTO);
+    public void CloseOrOpenTicket(int id);
+
 }
