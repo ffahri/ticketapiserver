@@ -67,6 +67,20 @@ public class TicketController {
         return new ResponseEntity<TicketDTO>(ticketService.getTicketById(id),HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('Client')")
+    @GetMapping("/{username}/{id}")
+    public ResponseEntity<TicketDTO> userGetById(@PathVariable String username,@PathVariable int id)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userWhichRequest = authentication.getName();
+        if(username.equals(userWhichRequest)) {
+            return new ResponseEntity<TicketDTO>(ticketService.getTicketById(id), HttpStatus.OK);
+        }
+        else
+            throw new AccessDeniedException("Wrong User || Hatalı Kullanıcı");
+
+    }
+
 
 
 

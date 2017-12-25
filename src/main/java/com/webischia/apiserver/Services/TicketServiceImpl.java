@@ -92,8 +92,9 @@ public class TicketServiceImpl implements TicketService{
     @Override
     public void CloseOrOpenTicket(int id)
     {
-        Boolean current = ticketRepository.findById(id).get().isStatus();
-        ticketRepository.findById(id).get().setStatus(!current);
+        Ticket degisecek  = ticketRepository.findById(id).get();
+        degisecek.setStatus(!degisecek.isStatus());
+        ticketRepository.save(degisecek);
     }
 
     @Override

@@ -43,10 +43,14 @@ public class MessageController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userWhichRequest = authentication.getName();
         if (username.equals(userWhichRequest) && ticketService.isUserHaveIt(id, username)) { // bu kullanıcı bu ticketa sahip mi ?
+
+            ticketService.CloseOrOpenTicket(id);
             return new ResponseEntity<MessageDTO>(messageService.createMessage(MessageDTO,id,username), HttpStatus.CREATED);
         }
         else if (userRepository.findByUsername(userWhichRequest).get().getAccessLevel().getDescription().equals("Employee"))
         {
+            ticketService.CloseOrOpenTicket(id);
+
             return new ResponseEntity<MessageDTO>(messageService.createMessage(MessageDTO,id,userWhichRequest), HttpStatus.CREATED);
 
         }
