@@ -121,6 +121,16 @@ public class TicketController {
 
 
     }
+
+    @PreAuthorize("hasAuthority('Employee')")
+    @GetMapping("/search/{term}")
+    public ResponseEntity<TicketListDTO> SearchTicket(@PathVariable(value = "term") String term)
+    {
+
+            return new ResponseEntity<TicketListDTO>(new TicketListDTO(ticketService.findAllByTicketTitleContaining(term)), HttpStatus.OK);
+
+    }
+
     // UPDATE
 
     @PreAuthorize("hasAuthority('Client')")

@@ -93,6 +93,14 @@ public class TicketServiceImpl implements TicketService{
     }*/
 
     @Override
+    public List<TicketDTO> findAllByTicketTitleContaining(String term) {
+        return ticketRepository.findAllByTicketTitleContaining(term)
+                .stream()
+                .map(ticketMapper::ticketToTicketDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void CloseOrOpenTicket(int id)
     {
         Ticket degisecek  = ticketRepository.findById(id).get();
