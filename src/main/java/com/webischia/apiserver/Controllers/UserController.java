@@ -22,11 +22,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/create")
-    public void register(@RequestBody UserDTO userDTO)
-    {
-        userService.register(userDTO);
-    }
+
 
     @PreAuthorize("hasAuthority('Admin')")
     @GetMapping

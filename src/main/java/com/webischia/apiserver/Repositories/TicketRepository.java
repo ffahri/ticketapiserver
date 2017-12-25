@@ -18,4 +18,5 @@ public interface TicketRepository extends JpaRepository<Ticket,Integer> {
     //List<Ticket> getAllByUserTicket(String name);
     List<Ticket> getAllByUserTicketUsername(String username);
     List<Ticket> findAllByUserTicketIdAndTicketTitleContaining(int id,String title);
+    void deleteById(int id);
 }

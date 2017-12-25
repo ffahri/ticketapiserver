@@ -17,4 +17,5 @@ public interface MessageRepository extends JpaRepository<Message,Integer> {
     Optional<Message> findByTicketMessage(int id);
     Optional<Message> findByMessageContext(String context); //searching by messagecontext WHERE IS THE PRIVACY ???
     void deleteById(int id);
+    void deleteAllByTicketMessageId(int id);
 }

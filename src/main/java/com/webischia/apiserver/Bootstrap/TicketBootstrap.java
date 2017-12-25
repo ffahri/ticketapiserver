@@ -8,7 +8,7 @@ import com.webischia.apiserver.Repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class TicketBootstrap implements CommandLineRunner {
     private final TicketRepository ticketRepository ;
     private final UserRepository userRepository;

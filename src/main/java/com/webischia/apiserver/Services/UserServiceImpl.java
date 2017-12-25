@@ -21,7 +21,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void register(UserDTO user) {
-        User usernew = userMapper.userDTOToUser(user);
+        User usernew = new User();
+        usernew.setAccessLevel(userRepository.findById(1).get().getAccessLevel());
+        usernew.setEmail(user.getEmail());
+        usernew.setName(user.getSurname());
+        usernew.setUsername(user.getName());
+        usernew.setPassword(user.getPassword());
         userRepository.save(usernew);
     }
 

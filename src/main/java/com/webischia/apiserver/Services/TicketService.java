@@ -17,5 +17,6 @@ public interface TicketService {
     List<TicketDTO> findAllByTicketTitle(int id,String title);
     TicketDTO patchTicket(int id, TicketDTO ticketDTO);
     public void CloseOrOpenTicket(int id);
+    void deleteById(int id);
 
 }

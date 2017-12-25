@@ -44,6 +44,7 @@ public class MessageController {
         String userWhichRequest = authentication.getName();
         if (username.equals(userWhichRequest) && ticketService.isUserHaveIt(id, username)) { // bu kullanıcı bu ticketa sahip mi ?
 
+            if(ticketService.getTicketById(id).isStatus() == false)
             ticketService.CloseOrOpenTicket(id);
             return new ResponseEntity<MessageDTO>(messageService.createMessage(MessageDTO,id,username), HttpStatus.CREATED);
         }

@@ -2,6 +2,7 @@ package com.webischia.apiserver.Services;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.webischia.apiserver.Domains.Ticket;
+import com.webischia.apiserver.Repositories.MessageRepository;
 import com.webischia.apiserver.Repositories.TicketRepository;
 import com.webischia.apiserver.Repositories.UserRepository;
 import com.webischia.apiserver.api.v1.mapper.TicketMapper;
@@ -23,12 +24,14 @@ public class TicketServiceImpl implements TicketService{
     private final TicketMapper ticketMapper;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final MessageRepository messageRepository;
 
-    public TicketServiceImpl(TicketRepository ticketRepository, TicketMapper ticketMapper, UserRepository userRepository, UserMapper userMapper) {
+    public TicketServiceImpl(TicketRepository ticketRepository, TicketMapper ticketMapper, UserRepository userRepository, UserMapper userMapper, MessageRepository messageRepository) {
         this.ticketRepository = ticketRepository;
         this.ticketMapper = ticketMapper;
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.messageRepository = messageRepository;
     }
 
     @Override
@@ -100,5 +103,12 @@ public class TicketServiceImpl implements TicketService{
     @Override
     public TicketDTO patchTicket(int id, TicketDTO ticketDTO) {
         return null;
+    }
+
+    @Override
+    public void deleteById(int id) {
+
+        messageRepository.deleteAllByTicketMessageId(id);
+        ticketRepository.deleteById(id);
     }
 }
