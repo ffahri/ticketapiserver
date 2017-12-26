@@ -26,9 +26,9 @@ public class UserController {
 
     @PreAuthorize("hasAuthority('Admin')")
     @GetMapping
-    public ResponseEntity<UserListDTO> getAllTickets()
+    public ResponseEntity<UserListDTO> getAllUsers()
     {
-        return new ResponseEntity<UserListDTO>(new UserListDTO(userService.getAllUsers()), HttpStatus.OK);
+            return new ResponseEntity<UserListDTO>(new UserListDTO(userService.getAllUsers()), HttpStatus.OK);
     }
     @PreAuthorize("hasAuthority('Admin')")
     @GetMapping("/{id}")

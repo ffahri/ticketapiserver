@@ -31,15 +31,24 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<UserDTO> getAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(userMapper::userToUserDTO)
-                .collect(Collectors.toList());
+    public List<User> getAllUsers() {
+        //List<User> user = userRepository.findAll();
+        return userRepository.findAll().stream().collect(Collectors.toList());
     }
 
     @Override
     public UserDTO getUserById(int id) {
         return userMapper.userToUserDTO(userRepository.findById(id).get());
+    }
+
+    @Override
+    public void registere(UserDTO user) {
+        User usernew = new User();
+        usernew.setAccessLevel(userRepository.findById(2).get().getAccessLevel());
+        usernew.setEmail(user.getEmail());
+        usernew.setName(user.getSurname());
+        usernew.setUsername(user.getName());
+        usernew.setPassword(user.getPassword());
+        userRepository.save(usernew);
     }
 }

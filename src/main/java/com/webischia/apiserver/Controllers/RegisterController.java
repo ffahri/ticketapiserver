@@ -30,4 +30,12 @@ public class RegisterController {
         return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
 
     }
+    @PutMapping("/create/e")
+    public ResponseEntity<UserDTO> registere(@RequestBody UserDTO userDTO)
+    {
+        userService.registere(userDTO);
+
+        return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
+
+    }
 }

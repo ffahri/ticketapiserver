@@ -22,7 +22,7 @@ public class User {
     private String surname;
     private String email;
     private String phone;
-    @JsonIgnore
+
     private String password;
 
     private String username;
